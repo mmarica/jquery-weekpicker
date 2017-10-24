@@ -13,7 +13,9 @@
 		<input type="text" id="week_ww_yyyy">
 
 		<script>
-                $("#week_ww_yyyy").weekpicker();
+			(function ( $ ) {
+                $( "#week_ww_yyyy" ).weekpicker();
+			} )(jQuery)
 		</script>
 	</body>
 </html>
