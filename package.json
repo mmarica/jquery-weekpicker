@@ -40,7 +40,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "jquery": ">=1.5.1"
+    "jquery": ">=1.5.1",
+    "jquery-ui-dist": "^1.12.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
