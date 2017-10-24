@@ -28,10 +28,16 @@
 
 		$.extend( WeekPicker.prototype, {
 			init: function() {
+                $( "body" ).on( "mousemove", ".ui-weekpicker .ui-datepicker-calendar tr",
+                    function() { $( this ).find( "td a" ).addClass( "ui-state-hover" ); } );
+                $( "body" ).on( "mouseleave", ".ui-weekpicker .ui-datepicker-calendar tr",
+                    function() { $( this ).find( "td a" ).removeClass( "ui-state-hover" ); } );
+
 				this.yourOtherFunction();
 			},
 			yourOtherFunction: function() {
-                $( this.element ).datepicker( this.settings );
+                $( this.element ).datepicker( this.settings )
+					.datepicker( "widget" ).addClass( "ui-weekpicker" );
 			}
 		} );
 
