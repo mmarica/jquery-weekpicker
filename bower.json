@@ -1,19 +1,19 @@
 {
-  "name": "jquery-boilerplate",
+  "name": "jquery-weekpicker",
   "license": "MIT",
   "authors": [
-    "Zeno Rocha <hi@zenorocha.com>"
+    "Mihai Marica <mihai.marica82@yahoo.com>"
   ],
-  "description": "A jump-start for jQuery plugins development.",
-  "homepage": "http://jqueryboilerplate.com",
+  "description": "jQuery Weekpicker plugin",
+  "homepage": "http://www.mihai-marica.ro",
   "keywords": [
     "jquery",
     "plugin",
-    "boilerplate",
+    "weekpicker",
     "jquery-plugin",
-    "jquery-boilerplate"
+    "jquery-weekpicker"
   ],
-  "main": "src/jquery.boilerplate.js",
+  "main": "src/jquery.weekpicker.js",
   "dependencies": {
     "jquery": "1"
   },

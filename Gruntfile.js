@@ -23,14 +23,14 @@ module.exports = function( grunt ) {
 				banner: "<%= meta.banner %>"
 			},
 			dist: {
-				src: [ "src/jquery.boilerplate.js" ],
-				dest: "dist/jquery.boilerplate.js"
+				src: [ "src/jquery.weekpicker.js" ],
+				dest: "dist/jquery.weekpicker.js"
 			}
 		},
 
 		// Lint definitions
 		jshint: {
-			files: [ "src/jquery.boilerplate.js", "test/**/*" ],
+			files: [ "src/jquery.weekpicker.js", "test/**/*" ],
 			options: {
 				jshintrc: ".jshintrc"
 			}
@@ -46,8 +46,8 @@ module.exports = function( grunt ) {
 		// Minify definitions
 		uglify: {
 			dist: {
-				src: [ "dist/jquery.boilerplate.js" ],
-				dest: "dist/jquery.boilerplate.min.js"
+				src: [ "dist/jquery.weekpicker.js" ],
+				dest: "dist/jquery.weekpicker.min.js"
 			},
 			options: {
 				banner: "<%= meta.banner %>"
@@ -58,7 +58,7 @@ module.exports = function( grunt ) {
 		coffee: {
 			compile: {
 				files: {
-					"dist/jquery.boilerplate.js": "src/jquery.boilerplate.coffee"
+					"dist/jquery.weekpicker.js": "src/jquery.weekpicker.coffee"
 				}
 			}
 		},

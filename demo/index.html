@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>jQuery Boilerplate</title>
+		<title>jQuery Weekpicker</title>
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="../src/jquery.boilerplate.js"></script>
+		<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+		<script src="../src/jquery.weekpicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/jquery-ui-dist/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="../node_modules/jquery-ui-dist/jquery-ui.theme.css">
 	</head>
 	<body>
-		<div id="element"></div>
+		<label for="week_ww_yyyy">Select a week</label>
+		<input type="text" id="week_ww_yyyy">
+
 		<script>
-			$( function() {
-				$( "#element" ).defaultPluginName( {
-					propertyName: "a custom value"
-				} );
-			} );
+                $("#week_ww_yyyy").weekpicker();
 		</script>
 	</body>
 </html>
