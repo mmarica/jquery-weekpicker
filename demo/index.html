@@ -9,13 +9,35 @@
 		<link rel="stylesheet" type="text/css" href="../node_modules/jquery-ui-dist/jquery-ui.theme.css">
 	</head>
 	<body>
-		<label for="week_ww_yyyy">Select a week</label>
-		<input type="text" id="week_ww_yyyy">
+		<table>
+			<tr>
+				<td>
+					<label for="week_1">Select a week</label>
+				</td>
+				<td>
+					<label for="week_2">Select a week</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="week_1">
+				</td>
+				<td>
+					<input type="text" id="week_2">
+				</td>
+			</tr>
+		</table>
 
 		<script>
 			(function ( $ ) {
-                $( "#week_ww_yyyy" ).weekpicker();
-			} )(jQuery)
+                $( "#week_1" ).weekpicker();
+
+                $( "#week_2" ).weekpicker( {
+					weekFormat: "ww/oo"
+				});
+			} )( jQuery );
+
+			$("#www").datepicker();
 		</script>
 	</body>
 </html>
