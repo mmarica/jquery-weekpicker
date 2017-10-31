@@ -8,38 +8,66 @@
             dateFormat: "dd/mm/yy",
             showOtherMonths: true,
             selectOtherMonths: true,
-            showWeek: true
+            showWeek: true,
+            weekFormat: "w/oo"
         };
 
     function WeekPicker ( element, options ) {
-        this.element = element;
+        this.datePickerInput = $( element );
+        this.datePickerId = getDatePickerId( this.datePickerInput );
 
         this.settings = $.extend( {
             beforeShow: this.beforeShow,
-            onClose: this.onClose
+            onClose: this.onClose,
+            onSelect: this.onSelect
         }, defaults, options );
 
-        return this.init();
+        this.init();
+
+        return this;
     }
 
     $.extend( WeekPicker.prototype, {
         init: function() {
-            createWeekPickerInput( $( this.element ) );
-            $( this.element ).datepicker( this.settings );
+            this.weekPickerInput = createWeekPickerInput( this.datePickerInput );
+
+            // initialize the date picker input, but hide it,
+            // so only the week picker version remains visible
+            this.datePickerInput.datepicker( this.settings );
+            this.datePickerInput.hide();
+
+            this.weekPickerInput.focus( function() {
+                this.datePickerInput.show().focus().hide();
+            }.bind( this ) );
 
             $( "body" ).on( "mousemove", ".ui-weekpicker .ui-datepicker-calendar tr",
                 function() { $( this ).find( "td a" ).addClass( "ui-state-hover" ); } );
 
             $( "body" ).on( "mouseleave", ".ui-weekpicker .ui-datepicker-calendar tr",
                 function() { $( this ).find( "td a" ).removeClass( "ui-state-hover" ); } );
-
-            return this;
         },
         beforeShow: function() {
             $( this ).datepicker( "widget" ).addClass( "ui-weekpicker" );
         },
         onClose: function() {
             $( this ).datepicker( "widget" ).removeClass( "ui-weekpicker" );
+        },
+        onSelect: function( dateText, inst ) {
+            var datePickerInput = $( "#" + inst.id );
+            var weekPickerInput = $( "#" + datePickerInput.attr( "data-weekpicker-id" ) );
+
+            var datepickerValue = $( this ).datepicker( "getDate" );
+            var year = datepickerValue.getFullYear();
+            var month = datepickerValue.getMonth();
+
+            var dateObj = new Date( year, month, datepickerValue.getDate() );
+            var week = $.datepicker.iso8601Week( dateObj );
+
+            if ( week > 50 && month === 0 ) {
+                year--;
+            }
+
+            weekPickerInput.val( week + "/" + year );
         }
     } );
 
@@ -52,23 +80,30 @@
         } );
     };
 
-    var createWeekPickerInput = function( datePickerInput ) {
+    var getDatePickerId = function( datePickerInput ) {
         var datePickerId = datePickerInput.attr( "id" );
 
         if ( datePickerId === undefined ) {
-            datePickerId = randomId( "datepicker_" );
+            datePickerId = generateUniqueId( "datepicker_" );
             datePickerInput.attr( "id", datePickerId );
         }
 
+        return datePickerId;
+    };
+
+    var createWeekPickerInput = function( datePickerInput ) {
+        var datePickerId = datePickerInput.attr( "id" );
         var weekPickerId = datePickerId + "_weekpicker";
         var weekPickerInput = $( "<input type=\"text\" id=\"" + weekPickerId +
             "\" data-datepicker-id=\"" + datePickerId + "\">" );
 
         datePickerInput.after( weekPickerInput );
         datePickerInput.attr( "data-weekpicker-id", weekPickerId );
+
+        return weekPickerInput;
     };
 
-    var randomId = function( prefix ) {
+    var generateUniqueId = function( prefix ) {
         function random() {
             return Math.floor( ( 1 + Math.random() ) * 0x100000000 ).toString( 16 ).substring( 1 );
         }
