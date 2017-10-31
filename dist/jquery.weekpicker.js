@@ -32,6 +32,7 @@
 
     $.extend( WeekPicker.prototype, {
         init: function() {
+            createWeekPickerInput( $( this.element ) );
             $( this.element ).datepicker( this.settings );
 
             $( "body" ).on( "mousemove", ".ui-weekpicker .ui-datepicker-calendar tr",
@@ -39,6 +40,8 @@
 
             $( "body" ).on( "mouseleave", ".ui-weekpicker .ui-datepicker-calendar tr",
                 function() { $( this ).find( "td a" ).removeClass( "ui-state-hover" ); } );
+
+            return this;
         },
         beforeShow: function() {
             $( this ).datepicker( "widget" ).addClass( "ui-weekpicker" );
@@ -57,4 +60,27 @@
         } );
     };
 
+    var createWeekPickerInput = function( datePickerInput ) {
+        var datePickerId = datePickerInput.attr( "id" );
+
+        if ( datePickerId === undefined ) {
+            datePickerId = randomId( "datepicker_" );
+            datePickerInput.attr( "id", datePickerId );
+        }
+
+        var weekPickerId = datePickerId + "_weekpicker";
+        var weekPickerInput = $( '<input type="text" id="' + weekPickerId +
+            '" data-datepicker-id="' + datePickerId + '">' );
+
+        datePickerInput.after( weekPickerInput );
+        datePickerInput.attr( "data-weekpicker-id", weekPickerId );
+    };
+
+    var randomId = function( prefix ) {
+        function random() {
+            return Math.floor( ( 1 + Math.random() ) * 0x10000 ).toString( 16 );
+        }
+
+        return prefix + random();
+    };
 } )( jQuery, window, document );
