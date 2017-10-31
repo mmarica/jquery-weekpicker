@@ -70,9 +70,15 @@
 
     var randomId = function( prefix ) {
         function random() {
-            return Math.floor( ( 1 + Math.random() ) * 0x10000 ).toString( 16 );
+            return Math.floor( ( 1 + Math.random() ) * 0x100000000 ).toString( 16 ).substring( 1 );
         }
 
-        return prefix + random();
+        var id;
+
+        do {
+            id = prefix + random();
+        } while ( $( "#" + id ).length );
+
+        return id;
     };
 } )( jQuery, window, document );
