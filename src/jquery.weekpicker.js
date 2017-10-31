@@ -5,7 +5,7 @@
     var pluginName = "WeekPicker",
         defaults = {
             firstDay: 1,
-            dateFormat: "dd/m/yy",
+            dateFormat: "dd/mm/yy",
             showOtherMonths: true,
             selectOtherMonths: true,
             showWeek: true
