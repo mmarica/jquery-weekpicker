@@ -17,6 +17,9 @@
 				<td>
 					<label for="week_2">Select a week</label>
 				</td>
+				<td>
+					Select a week
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -24,6 +27,9 @@
 				</td>
 				<td>
 					<input type="text" id="week_2">
+				</td>
+				<td>
+					<input type="text" class="weekpicker">
 				</td>
 			</tr>
 		</table>
@@ -35,6 +41,8 @@
                 $( "#week_2" ).weekpicker( {
 					weekFormat: "ww/oo"
 				});
+
+                $( ".weekpicker" ).weekpicker();
 			} )( jQuery );
 
 			$("#www").datepicker();
