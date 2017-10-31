@@ -61,8 +61,8 @@
         }
 
         var weekPickerId = datePickerId + "_weekpicker";
-        var weekPickerInput = $( '<input type="text" id="' + weekPickerId +
-            '" data-datepicker-id="' + datePickerId + '">' );
+        var weekPickerInput = $( "<input type=\"text\" id=\"" + weekPickerId +
+            "\" data-datepicker-id=\"" + datePickerId + "\">" );
 
         datePickerInput.after( weekPickerInput );
         datePickerInput.attr( "data-weekpicker-id", weekPickerId );
