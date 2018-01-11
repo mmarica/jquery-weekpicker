@@ -42,7 +42,9 @@
 					weekFormat: "ww/oo"
 				});
 
-                $( ".weekpicker" ).weekpicker();
+                $( ".weekpicker" ).weekpicker( {
+                    weekFormat: "w/o"
+				} );
 			} )( jQuery );
 
 			$("#www").datepicker();
